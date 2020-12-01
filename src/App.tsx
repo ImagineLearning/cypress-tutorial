@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import { Header } from './components/header/Header';
+import { Film, FilmTable } from './components/film-table/FilmTable';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export function App() {
+	const [films, setFilms] = useState<Film[]>([]);
+
+	useEffect(() => {
+		async function fetchFilms() {
+			const response = await fetch('https://ghibliapi.herokuapp.com/films');
+			const results = (await response.json()) as Film[];
+			setFilms(results);
+		}
+
+		fetchFilms();
+	}, []);
+
+	return (
+		<>
+			<Header title="Studio Ghibli Films" />
+			<main>
+				<div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+					<FilmTable films={films} />
+				</div>
+			</main>
+		</>
+	);
 }
-
-export default App;
