@@ -1,9 +1,17 @@
 export class FilmsPage {
 	interceptFilmsRequest() {
-		cy.intercept({
-			method: 'GET',
-			url: 'https://ghibliapi.herokuapp.com/films'
-		}).as('films');
+		cy.intercept(
+			{
+				method: 'GET',
+				url: 'https://ghibliapi.herokuapp.com/films'
+			},
+			{
+				fixture: 'films.json',
+				headers: {
+					'access-control-allow-origin': window.location.origin
+				}
+			}
+		).as('films');
 		return this;
 	}
 
