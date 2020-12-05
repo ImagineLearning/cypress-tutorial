@@ -35,15 +35,7 @@ export class FilmsPage {
 		return this;
 	}
 
-	numberOfVisibleFilmsShouldBe(films: number) {
-		cy.get('table.films tbody tr').should('have.length', 2);
-	}
-
-	visibleFilmTitlesShouldMatch(title: RegExp) {
-		cy.get('table.films tbody tr td:nth-child(2)').should($columns => {
-			$columns.each((_, column) => {
-				expect(Cypress.$(column).text()).to.match(title);
-			});
-		});
+	filmsShouldMatchSnapshot() {
+		cy.get('table.films').matchImageSnapshot();
 	}
 }

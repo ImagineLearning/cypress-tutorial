@@ -15,8 +15,7 @@ describe('Films', () => {
 				.fillInSearch('castle')
 				.submitSearch();
 
-			page.numberOfVisibleFilmsShouldBe(2);
-			page.visibleFilmTitlesShouldMatch(/castle/i);
+			page.filmsShouldMatchSnapshot();
 		});
 	});
 });
