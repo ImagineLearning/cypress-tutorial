@@ -28,6 +28,7 @@
 		"@typescript-eslint/eslint-plugin": "^4.9.0",
 		"@typescript-eslint/parser": "^4.9.0",
 		"autoprefixer": "^9.8.6",
+		"cypress": "^6.0.1",
 		"eslint": "^7.14.0",
 		"eslint-loader": "^4.0.2",
 		"postcss": "^7.0.35",
@@ -43,6 +44,19 @@
 		"parser": "@typescript-eslint/parser",
 		"plugins": [
 			"@typescript-eslint"
+		],
+		"overrides": [
+			{
+				"files": [
+					"cypress/**/*"
+				],
+				"rules": {
+					"jest": "off",
+					"jest/expect-expect": "off",
+					"jest/valid-expect-in-promise": "off",
+					"jest/valid-expect": "off"
+				}
+			}
 		],
 		"rules": {
 			"no-restricted-imports": [
