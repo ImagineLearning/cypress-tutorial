@@ -5,7 +5,9 @@
 	"scripts": {
 		"start": "craco start",
 		"build": "craco build",
-		"test": "craco test"
+		"test": "craco test",
+		"e2e": "ELECTRON_EXTRA_LAUNCH_ARGS=\"--force-device-scale-factor=1\" npx cypress open",
+		"e2e:ci": "npx cypress run"
 	},
 	"dependencies": {
 		"@craco/craco": "^5.9.0",
